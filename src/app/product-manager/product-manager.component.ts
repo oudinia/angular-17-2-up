@@ -1,16 +1,16 @@
 import {Component, computed, inject, input, OnInit} from '@angular/core';
-import {AppService, Product} from "../app.service";
+import {AppService} from "./app.service";
+import {ProductModel} from "./product.model";
 
 @Component({
   selector: 'app-product-manager',
   standalone: true,
   imports: [],
   templateUrl: './product-manager.component.html',
-  styleUrl: './product-manager.component.scss'
 })
 export class ProductManagerComponent implements OnInit {
   appService = inject(AppService);
-  productList = input.required<Product[]>();
+  productList = input.required<ProductModel[]>();
   constructor() {
 
   }
@@ -27,7 +27,7 @@ export class ProductManagerComponent implements OnInit {
   }
 
   removeProduct(id: number) {
-    this.appService.removeProduct({id, name: `product ${id}`} as Product);
+    this.appService.removeProduct({id, name: `product ${id}`} as ProductModel);
   }
 
   get products() {

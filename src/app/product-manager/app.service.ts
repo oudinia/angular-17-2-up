@@ -1,24 +1,20 @@
 import {Injectable, signal} from "@angular/core";
-
-export interface Product {
-  id: number;
-  name: string;
-}
+import {ProductModel} from "./product.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
-  products = signal<Product[]>([]);
+  products = signal<ProductModel[]>([]);
   constructor() {
   }
 
-  addProduct(product: Product) {
+  addProduct(product: ProductModel) {
     this.products.update(products => [...products, product]);
   }
 
-  removeProduct(product: Product) {
+  removeProduct(product: ProductModel) {
     this.products.update(products => products.filter(p => p.id !== product.id));
   }
 }
