@@ -1,4 +1,4 @@
-import {Component, computed, inject} from '@angular/core';
+import {Component, computed, inject, input, OnInit} from '@angular/core';
 import {AppService, Product} from "../app.service";
 
 @Component({
@@ -8,10 +8,17 @@ import {AppService, Product} from "../app.service";
   templateUrl: './product-manager.component.html',
   styleUrl: './product-manager.component.scss'
 })
-export class ProductManagerComponent {
+export class ProductManagerComponent implements OnInit {
   appService = inject(AppService);
+  productList = input.required<Product[]>();
+  constructor() {
 
-  constructor() {}
+  }
+
+  ngOnInit() {
+    console.log('productList', this.productList());
+    this.appService.products.set(this.productList());
+  }
 
   addProduct() {
     const productId = Math.floor(Math.random() * (100 - 4 + 1)) + 4;
