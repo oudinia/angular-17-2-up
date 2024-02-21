@@ -18,5 +18,7 @@ export class AppService {
     this.products.update(products => [...products, product]);
   }
 
-
+  removeProduct(product: Product) {
+    this.products.update(products => products.filter(p => p.id !== product.id));
+  }
 }
