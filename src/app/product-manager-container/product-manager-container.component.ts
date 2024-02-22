@@ -12,16 +12,6 @@ import {HttpClient} from "@angular/common/http";
   templateUrl: './product-manager-container.component.html',
   styleUrl: './product-manager-container.component.scss'
 })
-export class ProductManagerContainerComponent implements OnInit{
-  initialProductList: ProductModel[] = [];
-
-
-  constructor(private httpClient: HttpClient) {
-  }
-
-  ngOnInit() {
-    this.httpClient.get<ProductModel[]>('http://localhost:5211/api/products').subscribe((products: ProductModel[]) => {
-      this.initialProductList = products;
-    });
-  }
+export class ProductManagerContainerComponent {
+  initialProductList: ProductModel[] = [{id: 1, name: 'product 1'}, {id: 2, name: 'product 2'}, {id: 3, name: 'product 3'}];
 }
